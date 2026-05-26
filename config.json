@@ -1,0 +1,34 @@
+{
+  "app": {
+    "title": "Analizator Oszczędności Dokumentów",
+    "subtitle": "Abacus Centrum Księgowe",
+    "default_top_n": 5,
+    "default_forma": "KPIR",
+    "formy_ksiegowosci": ["KPIR", "KSH", "Ryczałt VAT"]
+  },
+  "pricing": {
+    "tiers": [
+      {"min_docs": 0,   "max_docs": 50,  "price": "100"},
+      {"min_docs": 51,  "max_docs": 100, "price": "180"},
+      {"min_docs": 101, "max_docs": 200, "price": "280"},
+      {"min_docs": 201, "max_docs": 500, "price": "450"}
+    ]
+  },
+  "ranking": {
+    "weights": {
+      "savings": 0.5,
+      "compatibility": 0.3,
+      "safety": 0.2
+    },
+    "baseline_compatibility": 0.5,
+    "preference_threshold": 0.5
+  },
+  "optimizer": {
+    "max_variants": 100
+  },
+  "paths": {
+    "data_dir": "data",
+    "fonts_dir": "data/fonts",
+    "system_rules": "data/rules_system.json"
+  }
+}

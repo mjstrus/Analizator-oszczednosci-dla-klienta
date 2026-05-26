@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<tns:JPK xmlns:tns="http://crd.gov.pl/wzor/2021/11/29/11089/">
+  <tns:Naglowek>
+    <tns:KodFormularza kodSystemowy="JPK_FA(3)" wersjaSchemy="1-0">JPK_FA</tns:KodFormularza>
+    <tns:WariantFormularza>3</tns:WariantFormularza>
+    <tns:DataWytworzeniaJPK>2025-11-30T23:59:00</tns:DataWytworzeniaJPK>
+    <tns:DataOd>2025-11-01</tns:DataOd>
+    <tns:DataDo>2025-11-30</tns:DataDo>
+    <tns:NazwaSystemu>Enova365</tns:NazwaSystemu>
+  </tns:Naglowek>
+  <tns:Podmiot1>
+    <tns:NIP>1234567890</tns:NIP>
+    <tns:PelnaNazwa>Fryzjer XYZ Sp. z o.o.</tns:PelnaNazwa>
+    <tns:Email>biuro@fryzjerxyz.pl</tns:Email>
+  </tns:Podmiot1>
+
+  <!-- 1. Mała faktura gotówkowa – LOW risk candidate w KPIR -->
+  <tns:Faktura>
+    <tns:KodWaluty>PLN</tns:KodWaluty>
+    <tns:DataWystawienia>2025-11-05</tns:DataWystawienia>
+    <tns:DataSprzedazy>2025-11-05</tns:DataSprzedazy>
+    <tns:TypFaktury>VAT</tns:TypFaktury>
+    <tns:NrFaktury>FV/001/2025/11</tns:NrFaktury>
+    <tns:P_15>15.00</tns:P_15>
+    <tns:SposobZaplaty>gotówka</tns:SposobZaplaty>
+    <tns:Podmiot2>
+      <tns:DaneIdentyfikacyjne>
+        <tns:NIP>9876543210</tns:NIP>
+        <tns:Nazwa>Papiernia ABC</tns:Nazwa>
+      </tns:DaneIdentyfikacyjne>
+    </tns:Podmiot2>
+  </tns:Faktura>
+
+  <!-- 2. Duża faktura przelew – MEDIUM risk candidate w KPIR -->
+  <tns:Faktura>
+    <tns:KodWaluty>PLN</tns:KodWaluty>
+    <tns:DataWystawienia>2025-11-10</tns:DataWystawienia>
+    <tns:DataSprzedazy>2025-11-10</tns:DataSprzedazy>
+    <tns:TypFaktury>VAT</tns:TypFaktury>
+    <tns:NrFaktury>FV/002/2025/11</tns:NrFaktury>
+    <tns:P_15>5000.00</tns:P_15>
+    <tns:SposobZaplaty>przelew</tns:SposobZaplaty>
+    <tns:Podmiot2>
+      <tns:DaneIdentyfikacyjne>
+        <tns:NIP>1122334455</tns:NIP>
+        <tns:Nazwa>Stacja Paliw DEF</tns:Nazwa>
+      </tns:DaneIdentyfikacyjne>
+    </tns:Podmiot2>
+  </tns:Faktura>
+
+  <!-- 3. Faktura korygująca (KOR) z wartością ujemną -->
+  <tns:Faktura>
+    <tns:KodWaluty>PLN</tns:KodWaluty>
+    <tns:DataWystawienia>2025-11-15</tns:DataWystawienia>
+    <tns:DataSprzedazy>2025-11-15</tns:DataSprzedazy>
+    <tns:TypFaktury>KOR</tns:TypFaktury>
+    <tns:NrFaktury>KOR/001/2025/11</tns:NrFaktury>
+    <tns:P_15>-200.00</tns:P_15>
+    <tns:SposobZaplaty>przelew</tns:SposobZaplaty>
+    <tns:Podmiot2>
+      <tns:DaneIdentyfikacyjne>
+        <tns:NIP>1122334455</tns:NIP>
+        <tns:Nazwa>Stacja Paliw DEF</tns:Nazwa>
+      </tns:DaneIdentyfikacyjne>
+    </tns:Podmiot2>
+  </tns:Faktura>
+
+  <!-- 4. Nota (NT) – zawsze LOW risk niezależnie od formy -->
+  <tns:Faktura>
+    <tns:KodWaluty>PLN</tns:KodWaluty>
+    <tns:DataWystawienia>2025-11-20</tns:DataWystawienia>
+    <tns:DataSprzedazy>2025-11-20</tns:DataSprzedazy>
+    <tns:TypFaktury>NOTA</tns:TypFaktury>
+    <tns:NrFaktury>NT/001/2025/11</tns:NrFaktury>
+    <tns:P_15>45.00</tns:P_15>
+    <tns:SposobZaplaty>przelew</tns:SposobZaplaty>
+    <tns:Podmiot2>
+      <tns:DaneIdentyfikacyjne>
+        <tns:NIP>5544332211</tns:NIP>
+        <tns:Nazwa>Kontrahent GHI</tns:Nazwa>
+      </tns:DaneIdentyfikacyjne>
+    </tns:Podmiot2>
+  </tns:Faktura>
+
+  <!-- 5. Faktura bez NIP dostawcy – obsługa graceful -->
+  <tns:Faktura>
+    <tns:KodWaluty>PLN</tns:KodWaluty>
+    <tns:DataWystawienia>2025-11-25</tns:DataWystawienia>
+    <tns:DataSprzedazy>2025-11-25</tns:DataSprzedazy>
+    <tns:TypFaktury>VAT</tns:TypFaktury>
+    <tns:NrFaktury>FV/003/2025/11</tns:NrFaktury>
+    <tns:P_15>30.00</tns:P_15>
+    <tns:SposobZaplaty>gotówka</tns:SposobZaplaty>
+    <tns:Podmiot2>
+      <tns:DaneIdentyfikacyjne>
+        <tns:Nazwa>Dostawca bez NIP (osoba fizyczna)</tns:Nazwa>
+      </tns:DaneIdentyfikacyjne>
+    </tns:Podmiot2>
+  </tns:Faktura>
+
+  <tns:FakturaCtrl>
+    <tns:LiczbaFaktur>5</tns:LiczbaFaktur>
+    <tns:WartoscFaktur>4890.00</tns:WartoscFaktur>
+  </tns:FakturaCtrl>
+</tns:JPK>

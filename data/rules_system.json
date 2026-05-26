@@ -1,0 +1,104 @@
+{
+  "version": "1.0",
+  "description": "Systemowe reguły oceny ryzyka dokumentów. Pierwsza pasująca reguła (DESC po priorytecie) wygrywa.",
+  "risk_rules": [
+    {
+      "id": "system_nt_low",
+      "nazwa": "Nota zawsze LOW",
+      "typ_dokumentu": "NT",
+      "risk_level": "LOW",
+      "priorytet": 100,
+      "powód": "Nota nie wpływa na ilość fakturowanych dokumentów księgowych"
+    },
+    {
+      "id": "system_ksh_przelew_high",
+      "nazwa": "KSH + przelew = HIGH",
+      "forma": "KSH",
+      "typ_płatności": "przelew",
+      "risk_level": "HIGH",
+      "priorytet": 95,
+      "powód": "Księgi handlowe wymagają ewidencjonowania wszystkich przelewów – nie można ruszać"
+    },
+    {
+      "id": "system_kd_korekta",
+      "nazwa": "Korekta = MED",
+      "typ_dokumentu": "KD",
+      "risk_level": "MED",
+      "priorytet": 90,
+      "powód": "Korekty wymagają sprawdzenia powiązania z fakturą pierwotną"
+    },
+    {
+      "id": "system_kpir_gotowka_male",
+      "nazwa": "KPIR + gotówka < 50 zł = LOW",
+      "forma": "KPIR",
+      "typ_płatności": "gotówka",
+      "wartość_max": 50,
+      "risk_level": "LOW",
+      "priorytet": 80,
+      "powód": "KPIR pozwala elastycznie podejść do drobnych dokumentów gotówkowych"
+    },
+    {
+      "id": "system_kpir_przelew_duze",
+      "nazwa": "KPIR + przelew ≥ 1000 zł = MED",
+      "forma": "KPIR",
+      "typ_płatności": "przelew",
+      "wartość_min": 1000,
+      "risk_level": "MED",
+      "priorytet": 70,
+      "powód": "Duże wartości w KPIR przy przelewie wymagają uwagi"
+    },
+    {
+      "id": "system_ryczalt_gotowka_low",
+      "nazwa": "Ryczałt VAT + gotówka = LOW",
+      "forma": "Ryczałt VAT",
+      "typ_płatności": "gotówka",
+      "risk_level": "LOW",
+      "priorytet": 50,
+      "powód": "Ryczałt liczy podatek od przychodu, drobna gotówka nie wpływa na rozliczenie"
+    }
+  ],
+  "action_rules": [
+    {
+      "id": "action_high_risk_nogo",
+      "nazwa": "HIGH risk = nie można ruszać",
+      "działanie": "nie_można_ruszać",
+      "risk_level": "HIGH",
+      "priorytet": 10,
+      "tagi": ["constraint", "no_go"]
+    },
+    {
+      "id": "action_kd_korekta_nogo",
+      "nazwa": "Korekta (KD) = nie można ruszać",
+      "działanie": "nie_można_ruszać",
+      "typ_dokumentu": "KD",
+      "priorytet": 9,
+      "tagi": ["constraint", "no_go", "korekta"]
+    },
+    {
+      "id": "action_kpir_male_skip",
+      "nazwa": "KPIR + małe dokumenty (<50zł) → sugeruj pomijanie",
+      "działanie": "sugeruj_pomijanie",
+      "forma": "KPIR",
+      "wartość_max": 50,
+      "priorytet": 8,
+      "tagi": ["KPIR", "małe_dokumenty"]
+    },
+    {
+      "id": "action_ryczalt_male_skip",
+      "nazwa": "Ryczałt + drobne pozycje → sugeruj pomijanie",
+      "działanie": "sugeruj_pomijanie",
+      "forma": "Ryczałt VAT",
+      "wartość_max": 30,
+      "priorytet": 7,
+      "tagi": ["ryczałt", "drobne"]
+    },
+    {
+      "id": "action_nota_skip",
+      "nazwa": "Nota → sugeruj pomijanie",
+      "działanie": "sugeruj_pomijanie",
+      "typ_dokumentu": "NT",
+      "priorytet": 6,
+      "tagi": ["nota"]
+    }
+  ]
+}
